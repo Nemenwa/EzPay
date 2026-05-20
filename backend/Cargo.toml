@@ -17,6 +17,12 @@ sqlx = { version = "0.8.2", features = ["runtime-tokio-rustls", "postgres", "chr
 deadpool-postgres = "0.14.0"
 tokio-postgres = "0.7.11"
 deadpool = "0.12.1"
+bcrypt = "0.15.1"
+jsonwebtoken = "9.3.0"
+validator = { version = "0.18.1", features = ["derive"] }
+lettre = "0.11.7"
+uuid = { version = "1.10.1", features = ["v4", "serde"] }
+chrono = { version = "0.4.38", features = ["serde"] }
 
 [profile.release]
 lto = true

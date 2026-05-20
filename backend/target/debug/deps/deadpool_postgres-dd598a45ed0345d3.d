@@ -1,0 +1,10 @@
+/home/lynndabel/wokedi/EzPay/backend/target/debug/deps/deadpool_postgres-dd598a45ed0345d3.d: /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/lib.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/config.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/generic_client.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/../README.md
+
+/home/lynndabel/wokedi/EzPay/backend/target/debug/deps/libdeadpool_postgres-dd598a45ed0345d3.rlib: /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/lib.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/config.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/generic_client.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/../README.md
+
+/home/lynndabel/wokedi/EzPay/backend/target/debug/deps/libdeadpool_postgres-dd598a45ed0345d3.rmeta: /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/lib.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/config.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/generic_client.rs /home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/../README.md
+
+/home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/lib.rs:
+/home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/config.rs:
+/home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/generic_client.rs:
+/home/lynndabel/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/deadpool-postgres-0.14.1/src/../README.md:

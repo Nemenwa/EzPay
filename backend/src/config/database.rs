@@ -81,6 +81,7 @@ impl DatabaseConfig {
 /// Database connection pool with retry logic and health checks
 pub struct Database {
     pool: Pool,
+    sqlx_pool: sqlx::PgPool,
     config: DatabaseConfig,
 }
 
@@ -95,8 +96,14 @@ impl Database {
             
             match Self::create_pool(&config).await {
                 Ok(pool) => {
+                    let sqlx_pool = sqlx::postgres::PgPoolOptions::new()
+                        .max_connections(config.max_connections)
+                        .connect(&config.database_url)
+                        .await
+                        .context("Failed to connect to database using sqlx")?;
+
                     info!("Database connection pool established successfully");
-                    return Ok(Self { pool, config });
+                    return Ok(Self { pool, sqlx_pool, config });
                 }
                 Err(e) => {
                     if attempt >= max_attempts {
@@ -158,6 +165,11 @@ impl Database {
     /// Get the connection pool
     pub fn pool(&self) -> &Pool {
         &self.pool
+    }
+
+    /// Get the sqlx connection pool
+    pub fn sqlx_pool(&self) -> &sqlx::PgPool {
+        &self.sqlx_pool
     }
 
     /// Get the database configuration
@@ -236,6 +248,7 @@ impl Clone for Database {
     fn clone(&self) -> Self {
         Self {
             pool: self.pool.clone(),
+            sqlx_pool: self.sqlx_pool.clone(),
             config: self.config.clone(),
         }
     }

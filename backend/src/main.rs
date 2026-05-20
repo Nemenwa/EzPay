@@ -1,13 +1,22 @@
 mod config;
+mod controllers;
+mod models;
+mod routes;
+mod services;
 
 use axum::{routing::get, Json, Router};
 use serde::Serialize;
-use std::{net::SocketAddr, time::Duration};
+use std::{net::SocketAddr, sync::Arc, time::Duration};
 use tower_http::{
     cors::{Any, CorsLayer},
     trace::TraceLayer,
 };
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+
+use crate::config::{Database, DatabaseConfig};
+use crate::controllers::auth_controller::AppState;
+use crate::services::auth_service::AuthService;
+use crate::services::email_service::EmailService;
 
 #[derive(Serialize)]
 struct HealthResponse {
@@ -29,6 +38,23 @@ async fn main() -> anyhow::Result<()> {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
+    let config = DatabaseConfig::from_env()?;
+    let db = Database::new(config).await?;
+
+    let jwt_secret = std::env::var("JWT_SECRET").unwrap_or_else(|_| "debug_secret".to_string());
+    
+    let auth_service = AuthService::new(db.clone(), jwt_secret);
+    let email_service = EmailService::new(
+        std::env::var("SMTP_SERVER").unwrap_or_default(),
+        std::env::var("SMTP_USER").unwrap_or_default(),
+        std::env::var("SMTP_PASS").unwrap_or_default(),
+    );
+
+    let state = Arc::new(AppState {
+        auth_service,
+        email_service,
+    });
+
     let port: u16 = std::env::var("PORT")
         .ok()
         .and_then(|v| v.parse().ok())
@@ -36,6 +62,7 @@ async fn main() -> anyhow::Result<()> {
 
     let app = Router::new()
         .route("/health", get(health))
+        .nest("/auth", routes::auth_routes::auth_routes(state.clone()))
         .layer(
             CorsLayer::new()
                 .allow_origin(Any)
